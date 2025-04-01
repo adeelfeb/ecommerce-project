@@ -1,0 +1,83 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# TypeScript build files
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.local
+
+# Logs
+logs
+*.log
+logs/
+debug.log
+debug/
+out.log
+error.log
+
+# Editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# MongoDB & Database
+dump/
+*.db
+*.sqlite
+
+# Next.js (if applicable)
+.next/
+
+# Public runtime files
+public/uploads/
+public/temp/
+
+# React specific files
+*.cache
+.eslintcache
+.next/
+.vercel/
+out/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Compiled JavaScript files
+*.js
+*.cjs
+*.mjs
+*.map
+*.d.ts
+
+# Misc
+*.log
+*.pid
+*.seed
+*.pid.lock
