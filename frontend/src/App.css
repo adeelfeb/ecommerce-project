@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+
+li {
+  display: inline-block; /* Ensure the image is treated as a block-level element */
+  width: auto;           /* Let it adjust to the image size */
+}
+
+.product-image{
+  max-width: 100px;  /* Limit the width */
+  width: 10%;       /* Ensure it takes full width */
+  height: 10px;     /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the area while maintaining aspect ratio */
+}
