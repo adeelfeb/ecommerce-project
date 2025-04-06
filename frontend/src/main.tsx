@@ -5,6 +5,39 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
+import axios from 'axios';
+import { Product } from './types/Product';
+axios.defaults.baseURL= process.env.NODE_ENV === "development" ? "http://localhost:5000" : '/'
+
+
+
+type State = {
+  products: Product[],
+  loading: boolean,
+  error: string
+}
+
+type Action = | {type: 'FETCH_REQUEST'} | {type: "FETCH_SUCCESS", payload: Product[]} | {type: "FETCH_FAIL"; payload: string}
+
+const initialState: State = {
+  products: [],
+  loading: true,
+  error: ''
+}
+
+const reducer = (state: State, action: Action)=>{
+  switch(action.type){
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true}
+    case 'FETCH_SUCCESS':
+      return { ...state, products: action.payload, loading: false}
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload}
+    default: 
+      return state
+  }
+}
+
 
 // Define routes with lazy-loaded components
 const router = createBrowserRouter([
@@ -22,7 +55,7 @@ const router = createBrowserRouter([
       {
         path: 'about',
         async lazy() {
-          const { default: About } = await import('./pages/ABout');
+          const { default: About } = await import('./pages/About');
           return { Component: About };
         },
       },
