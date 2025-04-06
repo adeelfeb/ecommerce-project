@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { sampleProducts } from './data';
-
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { Outlet } from 'react-router';
+import { Link } from 'react-router-dom';
+
 
 function App() {
   useEffect(() => {
@@ -16,25 +17,18 @@ function App() {
           <Container>
             <Navbar.Brand>T-Commerce</Navbar.Brand>
           </Container>
-          <Nav>
-            <a href='/cart' className='nav-link'> Cart</a>
-            <a href='/signin' className='nav-link'>Sign In</a>
+          <Nav className='p-1'>
+            <Link to='/cart' className='nav-link'>Cart</Link>
+            <Link to='/login' className='nav-link'>Login</Link>
+            <Link to='/about' className='nav-link'>About</Link>
+            <Link to='/register' className='nav-link'>Register</Link>
           </Nav>
         </Navbar>
       </header>
       <main>
         <Container className='mt-4 text-center '>
         <p>Temp Products</p>
-        <Row>
-          {sampleProducts.map(product => (
-            <Col key={product.slug} sm={6} md={4} lg={3} >
-              <img src={product.image} alt="product-image" className="product-image" />
-              <h4>{product.name}</h4>
-              <h6>Price: ${product.price} </h6>
-              
-            </Col>
-          ))}
-        </Row>
+        <Outlet/>
         </Container>
         
       </main>
