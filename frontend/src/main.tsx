@@ -5,39 +5,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import axios from 'axios';
-import { Product } from './types/Product';
-axios.defaults.baseURL= process.env.NODE_ENV === "development" ? "http://localhost:5000" : '/'
-
-
-
-type State = {
-  products: Product[],
-  loading: boolean,
-  error: string
-}
-
-type Action = | {type: 'FETCH_REQUEST'} | {type: "FETCH_SUCCESS", payload: Product[]} | {type: "FETCH_FAIL"; payload: string}
-
-const initialState: State = {
-  products: [],
-  loading: true,
-  error: ''
-}
-
-const reducer = (state: State, action: Action)=>{
-  switch(action.type){
-    case 'FETCH_REQUEST':
-      return { ...state, loading: true}
-    case 'FETCH_SUCCESS':
-      return { ...state, products: action.payload, loading: false}
-    case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload}
-    default: 
-      return state
-  }
-}
-
+import { ProductProvider } from './context/ProductContext';
 
 // Define routes with lazy-loaded components
 const router = createBrowserRouter([
@@ -103,8 +71,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <ProductProvider> {/* Wrap everything with ProductProvider */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </ProductProvider>
   </StrictMode>
 );

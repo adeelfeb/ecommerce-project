@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { productReducer, initialState, ProductState, ProductAction } from '../reducers/productReducer';
+import { PropsWithChildren } from 'react';
+
 
 type ProductContextType = {
   state: ProductState;
@@ -8,7 +10,7 @@ type ProductContextType = {
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ProductProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
   return (
